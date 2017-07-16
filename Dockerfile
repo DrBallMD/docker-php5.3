@@ -29,7 +29,7 @@ RUN apt-get update && \
 
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/apache2/php.ini
 RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php5/apache2/php.ini
-
+RUN cd /tmp && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 RUN echo "xdebug.remote_enable=on" >> /etc/php5/cli/conf.d/20-xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /etc/php5/cli/conf.d/20-xdebug.ini \
     && echo "xdebug.remote_handler=dbgp" >> /etc/php5/cli/conf.d/20-xdebug.ini \
